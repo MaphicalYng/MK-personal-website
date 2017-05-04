@@ -102,12 +102,23 @@ class App_model extends CI_Model
 
 
         /*
-         * 检查参数。
+         * 加载数组辅助函数。
+         * */
+        $this->load->helper('array');
+
+
+        /*
+         * 检查参数防止不完整参数对数据库的影响。
          * */
         if ($data_info === FALSE)
         {
             return 'no data';
         }
+        if ((!element('type', $data_info, FALSE)) AND (!element('id', $data_info, FALSE)))
+        {
+            return 'type id least';
+        }
+
 
 
         /*
@@ -140,7 +151,9 @@ class App_model extends CI_Model
         {
 
 
-            // 查询是否有此记录。
+            /*
+             * 查询是否有此记录。
+             * */
             $flag = FALSE;
             $same = $this->db->query('select item from '.$data_info['id'])->result();
             foreach ($same as $item)
@@ -156,7 +169,9 @@ class App_model extends CI_Model
             }
 
 
-            //
+            /*
+             * 删除操作。
+             * */
             $this->db->query('delete from '.$data_info['id'].' where item="'.$data_info['item'].'"');
         }
     }

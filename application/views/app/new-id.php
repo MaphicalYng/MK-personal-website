@@ -25,6 +25,6 @@
 
 </form>
 
-<?php echo anchor('app', '返回主页');?>
+<?php echo anchor('app', '返回主页'); // @todo 或许可以在此使用验证码功能。?>
 
 <br/>

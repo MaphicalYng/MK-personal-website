@@ -65,8 +65,7 @@ class App extends CI_Controller
         /*
          * 加载表单验证库、表单和路径辅助函数。
          * */
-        $this->load->helper('form');
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
 
@@ -150,8 +149,7 @@ class App extends CI_Controller
         /*
          * 加载表单验证库、表单和路径辅助函数。
          * */
-        $this->load->helper('form');
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
 
@@ -333,8 +331,7 @@ class App extends CI_Controller
         /*
          * 加载辅助函数。
          * */
-        $this->load->helper('url');
-        $this->load->helper('form');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
 
@@ -421,8 +418,7 @@ class App extends CI_Controller
         /*
          * 加载辅助函数。
          * */
-        $this->load->helper('url');
-        $this->load->helper('form');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
 
 
