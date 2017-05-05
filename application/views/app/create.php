@@ -22,6 +22,6 @@
 
 </form>
 
-<?php echo anchor('app/log_in', '返回');?>
+<?php echo anchor('app/log-in', '返回');?>
 
 <br/>

@@ -50,11 +50,11 @@ class App_model extends CI_Model
 
 
         /*
-         * 将密码和邮箱存储到数据库中。
+         * 将密码（加密后）和邮箱存储到数据库中。
          * */
         $this->db->insert($id_info['id'], array(
             'item' => 'password',
-            'content' => $id_info['password']
+            'content' => password_hash($id_info['password'], PASSWORD_DEFAULT)
         ));
         $this->db->insert($id_info['id'], array(
             'item' => 'email',

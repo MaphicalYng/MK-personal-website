@@ -12,4 +12,4 @@
 <p>注：邮件发送功能正在升级中暂不可使用，敬请谅解，但您仍可以在本站中记下您的备忘录，并随时查看它们。</p>
 
 <h4>注册/登录</h4>
-<p><?php echo anchor('app/new_id', '注册');?>  <?php echo anchor('app/log_in', '登录');?></p>
+<p><?php echo anchor('app/new-id', '注册');?>  <?php echo anchor('app/log-in', '登录');?></p>

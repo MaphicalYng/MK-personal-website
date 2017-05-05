@@ -7,4 +7,4 @@
  */
 echo "<p>您已成功地创建新用户。点击下面的链接登陆。</p>";?>
 
-<p><?php echo anchor('app/log_in', '点此登录');?></p>
+<p><?php echo anchor('app/log-in', '点此登录');?></p>

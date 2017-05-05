@@ -7,6 +7,6 @@
  */?>
 <p><?php echo $error_info;?></p>
 
-<p><?php echo anchor('app/new_id', '注册');?>  <?php echo anchor('app/log_in', '登录');?></p>
+<p><?php echo anchor('app/new-id', '注册');?>  <?php echo anchor('app/log-in', '登录');?></p>
 
 <p><?php echo anchor('app', '返回主页');?></p>

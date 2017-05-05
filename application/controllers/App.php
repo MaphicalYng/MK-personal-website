@@ -229,7 +229,7 @@ class App extends CI_Controller
                 /*
                  * 用户存在并判断密码是否正确。
                  * */
-                if ($id_info['password'] === $query['password'])  // 密码正确。
+                if (password_verify($id_info['password'], $query['password']))  // 密码正确。
                 {
 
 

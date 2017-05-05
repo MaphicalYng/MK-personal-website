@@ -15,4 +15,4 @@
 
 <br/>
 
-<p><?php echo anchor('app/log_in', '返回');?>  <?php echo anchor('app/delete', '删除条目');?></p>
+<p><?php echo anchor('app/log-in', '返回');?>  <?php echo anchor('app/delete', '删除条目');?></p>

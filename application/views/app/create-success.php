@@ -8,4 +8,4 @@
 
 <h3>成功创建一个条目</h3>
 
-<a><?php echo anchor('app/log_in', '返回');?></a>
+<a><?php echo anchor('app/log-in', '返回');?></a>
