@@ -10,10 +10,10 @@
 
 <?php echo form_open('app/new_id');?>
 
-    <h5>用户名（不支持空格）</h5>
+    <h5>用户名</h5>
     <input type="text" name="id" value="">
 
-    <h5>密码（不支持空格）</h5>
+    <h5>密码</h5>
     <input type="text" name="password" value="">
 
     <h5>邮箱</h5>

@@ -33,7 +33,7 @@ class App_model extends CI_Model
         /*
          * 检查是否已有相同用户名存在。
          * */
-        $same = $this->db->query('show tables')->result();
+        $same = $this->db->query('SHOW TABLES')->result();
         foreach ($same as $item)
         {
             if ($item->Tables_in_test === $id_info['id'])
@@ -46,7 +46,8 @@ class App_model extends CI_Model
         /*
          * 构造查询器创建表。
          * */
-        $this->db->query('create table '.$id_info['id'].' (item varchar(128), content text)');
+        $this->db->query('CREATE TABLE '.$id_info['id'].
+            ' (item VARCHAR(128), content TEXT)');
 
 
         /*
@@ -75,13 +76,14 @@ class App_model extends CI_Model
         /*
          * 检查是否有相同用户名存在。
          * */
-        $same = $this->db->query('show tables')->result();
+        $same = $this->db->query('SHOW TABLES')->result();
         foreach ($same as $item)
         {
             if ($item->Tables_in_test === $id_info['id'])  // 用户名存在。
             {
                 $result['exist'] = TRUE;
-                $pa = $this->db->query('select content from '.$id_info['id'].' where '.$id_info['id'].'.item="password"')->result();
+                $pa = $this->db->query('SELECT content FROM '.$id_info['id'].
+                    ' WHERE '.$id_info['id'].'.item="password"')->result();
                 $result['password'] = $pa['0']->content;
                 return $result;  // 返回存在情况和密码。
             }
@@ -112,11 +114,14 @@ class App_model extends CI_Model
          * */
         if ($data_info === FALSE)
         {
-            return 'no data';
+            log_message('error', 'No data get. (FROM App_model/universal);');
+            show_error('缺少数据。（App_model/universal）。', 500);
         }
-        if ((!element('type', $data_info, FALSE)) AND (!element('id', $data_info, FALSE)))
+        if ((!element('type', $data_info, FALSE))
+            OR (!element('id', $data_info, FALSE)))
         {
-            return 'type id least';
+            log_message('error', 'Data format error. (FROM App_model/universal);');
+            show_error('数据格式错误（App_model/universal）。', 500);
         }
 
 
@@ -139,7 +144,8 @@ class App_model extends CI_Model
          * */
         if ($data_info['type'] === 'query')
         {
-            $query = $this->db->query('select * from '.$data_info['id'].' where '.$data_info['id'].'.item!="password" and '.$data_info['id'].'.item!="email"')->result();
+            $query = $this->db->query('SELECT * FROM '.$data_info['id'].
+                ' WHERE '.$data_info['id'].'.item!="password" AND '.$data_info['id'].'.item!="email"')->result();
             return $query;
         }
 
@@ -155,7 +161,7 @@ class App_model extends CI_Model
              * 查询是否有此记录。
              * */
             $flag = FALSE;
-            $same = $this->db->query('select item from '.$data_info['id'])->result();
+            $same = $this->db->query('SELECT item FROM '.$data_info['id'])->result();
             foreach ($same as $item)
             {
                 if ($item->item === $data_info['item'])  // 条目存在。
@@ -172,7 +178,8 @@ class App_model extends CI_Model
             /*
              * 删除操作。
              * */
-            $this->db->query('delete from '.$data_info['id'].' where item="'.$data_info['item'].'"');
+            $this->db->query('DELETE FROM '.$data_info['id'].
+                ' WHERE item="'.$data_info['item'].'"');
         }
     }
 }

@@ -10,10 +10,10 @@
 
 <?php echo form_open('app/log_in');?>
 
-    <h5>用户名（不支持空格）</h5>
+    <h5>用户名</h5>
     <input type="text" name="id" value="">
 
-    <h5>密码（不支持空格）</h5>
+    <h5>密码</h5>
     <input type="text" name="password" value="">
 
     <br/><br/>

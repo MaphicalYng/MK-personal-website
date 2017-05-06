@@ -40,7 +40,10 @@ class App extends CI_Controller
         /*
          * 销毁会话。
          * */
-        session_destroy();
+        if (isset($_SESSION['id']))
+        {
+            session_destroy();
+        }
 
 
         /*
@@ -105,9 +108,9 @@ class App extends CI_Controller
             /*
              * 接受并预处理用户填写的数据。
              * */
-            $id_info['id'] = trim($this->input->post('id'));
-            $id_info['password'] = trim($this->input->post('password'));
-            $id_info['email'] = trim($this->input->post('email'));
+            $id_info['id'] = $this->input->post('id');
+            $id_info['password'] = $this->input->post('password');
+            $id_info['email'] = $this->input->post('email');
 
 
             /*
@@ -196,8 +199,8 @@ class App extends CI_Controller
             /*
              * 接受用户名和密码。
              * */
-            $id_info['id'] = trim($this->input->post('id'));
-            $id_info['password'] = trim($this->input->post('password'));
+            $id_info['id'] = $this->input->post('id');
+            $id_info['password'] = $this->input->post('password');
 
 
             /*

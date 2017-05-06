@@ -32,4 +32,12 @@ class Temp extends CI_Controller
             }
         }
     }
+
+    /**
+     *
+     */
+    public function temp()
+    {
+        show_error('test', 500);
+    }
 }
