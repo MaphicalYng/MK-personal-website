@@ -33,10 +33,10 @@ class App_model extends CI_Model
         /*
          * 检查是否已有相同用户名存在。
          * */
-        $same = $this->db->query('SHOW TABLES')->result();
+        $same = $this->db->query('SELECT user FROM user')->result();
         foreach ($same as $item)
         {
-            if ($item->Tables_in_test === $id_info['id'])
+            if ($item->user === $id_info['id'])
             {
                 return 'already';
             }
@@ -44,22 +44,12 @@ class App_model extends CI_Model
 
 
         /*
-         * 构造查询器创建表。
-         * */
-        $this->db->query('CREATE TABLE '.$id_info['id'].
-            ' (item VARCHAR(128), content TEXT)');
-
-
-        /*
          * 将密码（加密后）和邮箱存储到数据库中。
          * */
-        $this->db->insert($id_info['id'], array(
-            'item' => 'password',
-            'content' => password_hash($id_info['password'], PASSWORD_DEFAULT)
-        ));
-        $this->db->insert($id_info['id'], array(
-            'item' => 'email',
-            'content' => $id_info['email']
+        $this->db->insert('user', array(
+            'user' => $id_info['id'],
+            'password' => password_hash($id_info['password'], PASSWORD_DEFAULT),
+            'email' => $id_info['email']
         ));
     }
 
@@ -76,15 +66,14 @@ class App_model extends CI_Model
         /*
          * 检查是否有相同用户名存在。
          * */
-        $same = $this->db->query('SHOW TABLES')->result();
+        $same = $this->db->query('SELECT user FROM user')->result();
         foreach ($same as $item)
         {
-            if ($item->Tables_in_test === $id_info['id'])  // 用户名存在。
+            if ($item->user === $id_info['id'])  // 用户名存在。
             {
                 $result['exist'] = TRUE;
-                $pa = $this->db->query('SELECT content FROM '.$id_info['id'].
-                    ' WHERE '.$id_info['id'].'.item="password"')->result();
-                $result['password'] = $pa['0']->content;
+                $pa = $this->db->query('SELECT password FROM user WHERE user.user="'.$id_info['id'].'"')->result();
+                $result['password'] = $pa['0']->password;
                 return $result;  // 返回存在情况和密码。
             }
         }
