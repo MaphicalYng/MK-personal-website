@@ -121,10 +121,11 @@ class App_model extends CI_Model
         if ($data_info['type'] === 'insert')
         {
             $data = array(
+                'user' => $data_info['id'],  // 插入数据时将用户名插入。
                 'item' => $data_info['item'],
                 'content' => $data_info['content']
             );
-            $this->db->insert($data_info['id'], $data);
+            $this->db->insert('content', $data);
         }
 
 
@@ -133,8 +134,7 @@ class App_model extends CI_Model
          * */
         if ($data_info['type'] === 'query')
         {
-            $query = $this->db->query('SELECT * FROM '.$data_info['id'].
-                ' WHERE '.$data_info['id'].'.item!="password" AND '.$data_info['id'].'.item!="email"')->result();
+            $query = $this->db->query('SELECT item, content FROM content WHERE content.user="'.$data_info['id'].'"')->result();
             return $query;
         }
 
@@ -150,7 +150,7 @@ class App_model extends CI_Model
              * 查询是否有此记录。
              * */
             $flag = FALSE;
-            $same = $this->db->query('SELECT item FROM '.$data_info['id'])->result();
+            $same = $this->db->query('SELECT item FROM content WHERE content.user="'.$data_info['id'].'"')->result();
             foreach ($same as $item)
             {
                 if ($item->item === $data_info['item'])  // 条目存在。
@@ -167,8 +167,7 @@ class App_model extends CI_Model
             /*
              * 删除操作。
              * */
-            $this->db->query('DELETE FROM '.$data_info['id'].
-                ' WHERE item="'.$data_info['item'].'"');
+            $this->db->query('DELETE FROM content WHERE content.user="'.$data_info['id'].'" AND content.item="'.$data_info['item'].'"');
         }
     }
 }
