@@ -18,7 +18,8 @@ class App extends CI_Controller
     {
         parent::__construct();
         $this->load->model('app_model');
-        $this->load->library('session');
+        $this->load->library(array('session', 'form_validation'));
+	$this->load->helper(array('url', 'form'));
     }
 
 
@@ -32,9 +33,9 @@ class App extends CI_Controller
 
 
         /*
-         * 加载表单验证库、表单和路径辅助函数。
+         * 需要表单验证库、表单和路径辅助函数。
          * */
-        $this->load->helper('url');
+
 
 
         /*
@@ -66,10 +67,10 @@ class App extends CI_Controller
 
 
         /*
-         * 加载表单验证库、表单和路径辅助函数。
+         * 需要表单验证库、表单和路径辅助函数。
          * */
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+
+
 
 
         /*
@@ -150,10 +151,8 @@ class App extends CI_Controller
 
 
         /*
-         * 加载表单验证库、表单和路径辅助函数。
+         * 需要表单验证库、表单和路径辅助函数。
          * */
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
 
 
         /*
@@ -278,9 +277,9 @@ class App extends CI_Controller
 
 
         /*
-         * 加载辅助函数。
+         * 需要辅助函数。
          * */
-        $this->load->helper('url');
+
 
 
         /*
@@ -332,10 +331,9 @@ class App extends CI_Controller
 
 
         /*
-         * 加载辅助函数。
+         * 需要辅助函数。
          * */
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+
 
 
         /*
@@ -419,10 +417,9 @@ class App extends CI_Controller
 
 
         /*
-         * 加载辅助函数。
+         * 需要辅助函数。
          * */
-        $this->load->helper(array('form', 'url'));
-        $this->load->library('form_validation');
+
 
 
         /*

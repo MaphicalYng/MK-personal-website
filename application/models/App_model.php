@@ -18,6 +18,7 @@ class App_model extends CI_Model
     {
         parent::__construct();
         $this->load->database();
+	$this->load->helper('array');
     }
 
 
@@ -93,9 +94,9 @@ class App_model extends CI_Model
 
 
         /*
-         * 加载数组辅助函数。
+         * 需要数组辅助函数。
          * */
-        $this->load->helper('array');
+
 
 
         /*
