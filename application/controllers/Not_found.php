@@ -14,6 +14,7 @@ class Not_found extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('url');
     }
 
     /**
@@ -21,9 +22,6 @@ class Not_found extends CI_Controller
      */
     public function index()
     {
-
-
-        $this->load->helper('url');
 
 
         $data['title'] = '404错误';
