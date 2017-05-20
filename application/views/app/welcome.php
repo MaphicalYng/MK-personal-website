@@ -13,3 +13,5 @@
 
 <h4>注册/登录</h4>
 <p><?php echo anchor('app/new-id', '注册');?>  <?php echo anchor('app/log-in', '登录');?></p>
+
+<p><img src="<?php echo base_url('assets/')?>FROMMAPHICALYNG.png"> </p>
