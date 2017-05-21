@@ -144,6 +144,138 @@ class App extends CI_Controller
 
 
     /*
+     * 修改密码。
+     * */
+    public function change_password()
+    {
+
+
+        /*
+         * 需要表单验证函数和路径辅助函数，验证库。
+         * */
+
+
+        /*
+         * 判断是否登录。
+         * */
+        if ( ! isset($_SESSION['id']))
+        {
+
+
+            /*
+             * 显示错误信息。
+             * */
+            $data['title'] = '请您登录';
+            $data['error_info'] = '点击下面的链接注册或登录。';
+            $this->load->view('templates/header', $data);
+            $this->load->view('app/error', $data);
+            $this->load->view('templates/footer');
+            return;
+        }
+
+
+        /*
+         * 已经登陆，设置验证规则。
+         * */
+        $this->form_validation->set_rules('id', '用户名', 'required', array(
+            'required' => '请填写%s。'
+        ));
+        $this->form_validation->set_rules('old_password', '原密码', 'required', array(
+            'required' => '请填写%s。'
+        ));
+        $this->form_validation->set_rules('new_password', '新密码', 'required', array(
+            'required' => '请填写%s。'
+        ));
+
+
+        /*
+         * 运行规则。
+         * */
+        if ($this->form_validation->run() === FALSE)
+        {
+
+
+            /*
+             * 数据错误或者第一次显示。
+             * */
+            $data['title'] = '修改密码';
+            $this->load->view('templates/header', $data);
+            $this->load->view('app/change-password', $data);
+            $this->load->view('templates/footer');
+        }
+        else
+        {
+
+
+            /*
+             * 格式正确，获取数据。
+             * */
+            $id_info['id'] = $this->input->post('id');
+            $id_info['old_password'] = $this->input->post('old_password');
+            $id_info['new_password'] = $this->input->post('new_password');
+
+
+            /*
+             * 更新数据并查询结果。
+             * */
+            $query = $this->app_model->change_password($id_info); // 返回数组，result true/false。
+
+
+            /*
+             * 成功或失败。
+             * */
+            if ($query['result'] === FALSE)
+            {
+
+
+                if ($query['error'] === 'no-id')
+                {
+
+
+                    /*
+                    * 没用此用户，显示失败页面。
+                    * */
+                    $data['title'] = '用户不存在';
+                    $data['error_info'] = '请检查用户名拼写。点击下面的链接返回。';
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('app/error', $data);
+                    $this->load->view('templates/footer');
+                }
+
+
+                if ($query['error'] === 'wrong-password')
+                {
+
+
+                    /*
+                     * 密码错误。
+                     * */
+                    $data['title'] = '密码错误';
+                    $data['error_info'] = '请检查密码。点击下面的链接返回。';
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('app/error', $data);
+                    $this->load->view('templates/footer');
+                }
+            }
+            else
+            {
+
+
+                /*
+                 * 成功更新密码。
+                 * */
+                $data['title'] = '更改密码成功';
+                $this->load->view('templates/header', $data);
+                $this->load->view('app/change-password-success');
+                $this->load->view('templates/footer');
+            }
+        }
+    }
+
+
+
+
+    /*
      * 使用表单获取用户信息并实现登陆功能。
      * */
     public function log_in()
@@ -285,7 +417,7 @@ class App extends CI_Controller
         /*
          * 判断是否登录。
          * */
-        if (!isset($_SESSION['id']))
+        if ( ! isset($_SESSION['id']))
         {
 
 
@@ -339,7 +471,7 @@ class App extends CI_Controller
         /*
          * 判断是否登录。
          * */
-        if (!isset($_SESSION['id']))
+        if ( ! isset($_SESSION['id']))
         {
 
 
@@ -425,7 +557,7 @@ class App extends CI_Controller
         /*
          * 判断是否登录。
          * */
-        if (!isset($_SESSION['id']))
+        if ( ! isset($_SESSION['id']))
         {
 
 
