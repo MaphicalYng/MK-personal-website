@@ -8,4 +8,7 @@
 
 <p>您所要删除的条目不存在，请检查条目名称。</p>
 
-<?php echo anchor('app/delete', '返回');?>
+
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/delete');?>" role="button">返回</a>
+</p>

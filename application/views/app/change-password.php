@@ -24,7 +24,10 @@
     <input type="submit" value="提交">
 
 </form>
-
-<p><?php echo anchor('app/log-in', '返回');?> <?php echo anchor('app', '退出');?></p>
+<br/>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/log-in');?>" role="button">返回</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">退出</a>
+</p>
 
 <br/>

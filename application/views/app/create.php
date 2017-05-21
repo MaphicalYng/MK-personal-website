@@ -22,6 +22,10 @@
 
 </form>
 
-<?php echo anchor('app/log-in', '返回');?>
+<br/>
+
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/log-in');?>" role="button">返回</a>
+</p>
 
 <br/>

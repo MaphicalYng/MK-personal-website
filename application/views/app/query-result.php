@@ -7,12 +7,21 @@
  */?>
 <h3>您的所有条目</h3>
 
+<dl>
+
 <?php foreach ($data as $item):?>
-
-    <h4><?php echo $item->item;?></h4><p><?php echo $item->content;?></p>
-
+<hr/>
+    <dt><?php echo $item->item;?></dt>
+    <dd><?php echo $item->content;?></dd>
+<hr/>
 <?php endforeach;?>
+
+</dl>
 
 <br/>
 
-<p><?php echo anchor('app/log-in', '返回');?>  <?php echo anchor('app/delete', '删除条目');?></p>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/log-in');?>" role="button">返回</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/delete');?>" role="button">删除条目</a>
+</p>
+

@@ -24,7 +24,10 @@
     <input type="submit" value="提交">
 
 </form>
+<br/>
 
-<?php echo anchor('app', '返回主页'); // @todo 或许可以在此使用验证码功能。?>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">返回主页</a>
+</p>
 
 <br/>

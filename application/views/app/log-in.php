@@ -22,6 +22,5 @@
 
 </form>
 
-<?php echo anchor('app', '返回主页');?>
 
 <br/>

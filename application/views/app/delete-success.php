@@ -10,4 +10,6 @@
 
 <br/>
 
-<p><?php echo anchor('app/view', '返回');?></p>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/view');?>" role="button">返回</a>
+</p>

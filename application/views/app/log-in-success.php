@@ -7,9 +7,10 @@
  */?>
 
 <h3>您可以使用以下功能</h3>
-
-<p><?php echo anchor('app/create', '创建新条目');?>  <?php echo anchor('app/view', '已有条目');?></p>
-
-<p><?php echo anchor('app', '返回主页（退出）');?>  <?php echo anchor('app/change-password', '修改密码')?></p>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app/create');?>" role="button">创建新条目</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/view');?>" role="button">已有条目</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/change-password');?>" role="button">修改密码</a>
+</p>
 
 <p><i>注：当您退回到主页，您将默认为退出状态。</i></p>
