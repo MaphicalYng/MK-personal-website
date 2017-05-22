@@ -22,5 +22,10 @@
 
 </form>
 
+<br/>
+<p>
+    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">返回主页</a>
+</p>
+
 
 <br/>

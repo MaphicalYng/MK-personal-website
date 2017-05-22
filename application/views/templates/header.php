@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
+    <title>备忘录</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet">
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" style="background-image: <?php echo site_url('assets/images/');?>center.jpg">
 
         <!-- Main component for a primary marketing message or call to action -->
         <div class="jumbotron">

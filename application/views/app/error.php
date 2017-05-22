@@ -7,11 +7,9 @@
  */?>
 <p><?php echo $error_info;?></p>
 
-<p><?php echo anchor('app/new-id', '注册');?>  <?php echo anchor('app/log-in', '登录');?></p>
 
-<p><?php echo anchor('app', '返回主页');?></p>
 <p>
-    <a class="btn btn-primary" href="<?php echo site_url('app/new-id');?>" role="button">创建新条目</a>
-    <a class="btn btn-primary" href="<?php echo site_url('app/log-in');?>" role="button">已有条目</a>
-    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">修改密码</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/new-id');?>" role="button">注册</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/log-in');?>" role="button">登录</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">返回主页</a>
 </p>
