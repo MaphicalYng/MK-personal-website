@@ -62,7 +62,7 @@
 	define('MaphicalYng__default_route', 'app');				// Default route
 	define('MaphicalYng__website_address', 'http://127.0.0.1/website/');	// Base url
 	define('MaphicalYng__sessions_path', "C:\\xampp\\ci_sessions\\");	// File based sessions saving path
-	define('MaphicalYng__sessions_time', 0);				// Sessions lasting time
+	define('MaphicalYng__sessions_time', 7200);				// Sessions lasting time
 //
 //
 //=================================================================================================================

@@ -24,7 +24,7 @@
 
 <br/>
 <p>
-    <a class="btn btn-primary" href="<?php echo site_url('app');?>" role="button">返回主页</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/index_d');?>" role="button">返回主页</a>
 </p>
 
 

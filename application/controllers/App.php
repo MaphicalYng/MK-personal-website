@@ -37,6 +37,34 @@ class App extends CI_Controller
          * */
 
 
+        /*
+         * 若已经登陆则转到操作页面。
+         * */
+        if (isset($_SESSION['id']))
+        {
+            $this->log_in();
+            return;
+        }
+
+
+        /*
+         * 显示信息界面。
+         * */
+        $data['title'] = '欢迎来到备忘录';
+        $this->load->view('templates/header', $data);
+        $this->load->view('app/welcome');
+        $this->load->view('templates/footer');
+    }
+
+
+
+
+    /*
+     * 销毁会话（用户主动点击回主页）。
+     * */
+    public function index_d()
+    {
+
 
         /*
          * 销毁会话。
@@ -47,6 +75,9 @@ class App extends CI_Controller
         }
 
 
+        /*
+         * 进入主页。
+         * */
         /*
          * 显示信息界面。
          * */
