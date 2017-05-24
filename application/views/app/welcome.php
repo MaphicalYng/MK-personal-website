@@ -14,4 +14,4 @@
 <p>要完成这一切只需要注册一个账户并记下您的备忘录即可。</p>
 <p><i>注：邮件发送功能正在升级中暂不可使用，敬请谅解，但您仍可以在本站中记下您的备忘录，并随时查看它们。</i></p>
 
-<p><img src="<?php echo base_url('assets/images/')?>FROMMAPHICALYNG.png"> </p>
+<p><img src="<?php echo base_url('assets/images/')?>FROMMAPHICALYNG.png" class="img-responsive"> </p>

@@ -55,6 +55,18 @@
  */
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
+//=================================================================================================================
+// Personal varibles for some easy adjustments.
+//
+	define('MaphicalYng__database_in_use', 'newapp');			// Database in use
+	define('MaphicalYng__default_route', 'app');				// Default route
+	define('MaphicalYng__website_address', 'http://127.0.0.1/website/');	// Base url
+	define('MaphicalYng__sessions_path', "C:\\xampp\\ci_sessions\\");	// File based sessions saving path
+	define('MaphicalYng__sessions_time', 0);				// Sessions lasting time
+//
+//
+//=================================================================================================================
+
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING

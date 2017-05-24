@@ -8,7 +8,7 @@
 
 
 <br/>
-<em>&copy; 2017 MaphicalYng</em>
+<em>&copy; 2017 MaphicalYng</em><?php echo anchor('https://github.com/maphicalyng/website/', 'View on Github');?>
 <?php echo anchor('https://github.com/maphicalyng/website/', 'View on Github');?>
 </div>
 

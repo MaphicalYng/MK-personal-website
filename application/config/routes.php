@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*
  * 系统默认路由配置原始类名。
  * */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = MaphicalYng__default_route;
 $route['404_override'] = 'not_found';
 $route['translate_uri_dashes'] = TRUE;
 
