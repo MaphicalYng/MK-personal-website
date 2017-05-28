@@ -35,11 +35,12 @@ class App_model extends CI_Model
         }
 
 
-        $query = $this->db->query('SELECT * FROM user WHERE user.user="'.$id.'"')->result();
-        if ($query[0]->user === $id)
+        $id = hash('md5', $id);  // 生成用户名的哈希值。
+        $query = $this->db->query('SELECT * FROM user WHERE user.user="'.$id.'"');
+        if ($query->num_rows() > 0)
         {
             $result['exist'] = TRUE;
-            $result['password'] = $query[0]->password;
+            $result['password'] = $query->result()[0]->password;
             return $result;
         }
         else
@@ -63,13 +64,10 @@ class App_model extends CI_Model
         /*
          * 检查是否已有相同用户名存在。
          * */
-        $same = $this->db->query('SELECT user FROM user')->result();
-        foreach ($same as $item)
+        $query = $this->_if_user_exist_password($id_info['id']);
+        if ($query['exist'])
         {
-            if ($item->user === $id_info['id'])
-            {
-                return 'already';
-            }
+            return 'already';
         }
 
 
@@ -77,7 +75,7 @@ class App_model extends CI_Model
          * 将密码（加密后）和邮箱存储到数据库中。
          * */
         $this->db->insert('user', array(
-            'user' => $id_info['id'],
+            'user' => hash('md5', $id_info['id']),  // 存入用户名时使用哈希值。
             'password' => password_hash($id_info['password'], PASSWORD_DEFAULT),
             'email' => $id_info['email']
         ));
@@ -96,20 +94,25 @@ class App_model extends CI_Model
         /*
          * 检查是否有相同用户名存在。
          * */
-        $same = $this->db->query('SELECT user FROM user')->result();
-        foreach ($same as $item)
+        $query = $this->_if_user_exist_password($id_info['id']);
+        if ($query['exist'])
         {
-            if ($item->user === $id_info['id'])  // 用户名存在。
-            {
-                $result['exist'] = TRUE;
-                $pa = $this->db->query('SELECT password FROM user WHERE user.user="'.$id_info['id'].'"')->result();
-                $result['password'] = $pa['0']->password;
-                return $result;  // 返回存在情况和密码。
-            }
+
+
+            /*
+             * 用户存在。
+             * */
+            return $query;
         }
-        $result['exist'] = FALSE;
-        $result['password'] = NULL;
-        return $result;
+        else
+        {
+
+
+            /*
+             * 用户不存在。
+             * */
+            return $query;
+        }
     }
 
 
@@ -141,7 +144,8 @@ class App_model extends CI_Model
                  * 正确，修改密码。
                  * */
                 $new_password_encrypted = password_hash($id_info['new_password'], PASSWORD_DEFAULT);
-                $this->db->query('UPDATE user SET password="'.$new_password_encrypted.'" WHERE user="'.$id_info['id'].'"');
+                $id = hash('md5', $id_info['id']);
+                $this->db->query('UPDATE user SET password="'.$new_password_encrypted.'" WHERE user="'.$id.'"');
                 $result['result'] = TRUE;
                 $result['error'] = NULL;
                 return $result;
@@ -184,6 +188,7 @@ class App_model extends CI_Model
         /*
          * 需要数组辅助函数。
          * */
+        $id = hash('md5', $data_info['id']);
 
 
 
@@ -194,12 +199,14 @@ class App_model extends CI_Model
         {
             log_message('error', 'No data get. (FROM App_model/universal);');
             show_error('缺少数据。（App_model/universal）。', 500);
+            return 'bad-data';
         }
         if ((!element('type', $data_info, FALSE))
             OR (!element('id', $data_info, FALSE)))
         {
             log_message('error', 'Data format error. (FROM App_model/universal);');
             show_error('数据格式错误（App_model/universal）。', 500);
+            return 'bad-data';
         }
 
 
@@ -210,7 +217,7 @@ class App_model extends CI_Model
         if ($data_info['type'] === 'insert')
         {
             $data = array(
-                'user' => $data_info['id'],  // 插入数据时将用户名插入。
+                'user' => $id,  // 插入数据时将用户名插入。
                 'item' => $data_info['item'],
                 'content' => $data_info['content']
             );
@@ -223,7 +230,7 @@ class App_model extends CI_Model
          * */
         if ($data_info['type'] === 'query')
         {
-            $query = $this->db->query('SELECT item, content FROM content WHERE content.user="'.$data_info['id'].'"')->result();
+            $query = $this->db->query('SELECT item, content FROM content WHERE content.user="'.$id.'"')->result();
             return $query;
         }
 
@@ -239,7 +246,7 @@ class App_model extends CI_Model
              * 查询是否有此记录。
              * */
             $flag = FALSE;
-            $same = $this->db->query('SELECT item FROM content WHERE content.user="'.$data_info['id'].'"')->result();
+            $same = $this->db->query('SELECT item FROM content WHERE content.user="'.$id.'"')->result();
             foreach ($same as $item)
             {
                 if ($item->item === $data_info['item'])  // 条目存在。
@@ -256,7 +263,7 @@ class App_model extends CI_Model
             /*
              * 删除操作。
              * */
-            $this->db->query('DELETE FROM content WHERE content.user="'.$data_info['id'].'" AND content.item="'.$data_info['item'].'"');
+            $this->db->query('DELETE FROM content WHERE content.user="'.$id.'" AND content.item="'.$data_info['item'].'"');
         }
     }
 }
