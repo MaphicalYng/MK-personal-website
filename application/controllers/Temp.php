@@ -15,6 +15,7 @@ class Temp extends CI_Controller
     {
         parent::__construct();
         $this->load->model('temp_model');
+        $this->load->library('email');
     }
 
 
@@ -39,5 +40,29 @@ class Temp extends CI_Controller
     public function temp()
     {
         show_error('test', 500);
+    }
+
+    public function email()
+    {
+        $config['protocol'] = 'smtp';
+        $config['mailpath'] = "C:\\xampp\\sendmail\\";
+        $config['charset'] = 'utf-8';
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
+
+        $this->email->from('msatarchibald@foxmail.com', 'Test');
+        $this->email->to('msatarchibald@foxmail.com');
+        $this->email->subject('test');
+        $this->email->message('This is a test.');
+        if ($this->email->send())
+        {
+            echo 'ok';
+        }
+        else
+        {
+            echo 'no';
+        }
+
     }
 }

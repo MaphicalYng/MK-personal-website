@@ -22,4 +22,8 @@ class CLITools extends CI_Controller
     {
         echo "Hello {$to}!".PHP_EOL;
     }
+    public function hash($str)
+    {
+	    echo hash("md5", $str);
+    }
 }
