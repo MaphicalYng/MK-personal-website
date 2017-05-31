@@ -5,6 +5,7 @@
  * Date: 17/4/30
  * Time: 下午 10:13
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 class App extends CI_Controller
 {
 
