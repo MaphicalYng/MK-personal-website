@@ -60,9 +60,10 @@
 //
 	define('MaphicalYng__database_in_use', 'newapp');			// Database in use
 	define('MaphicalYng__default_route', 'app');				// Default route
-	define('MaphicalYng__website_address', 'http://127.0.0.1/website/');	// Base url
+	define('MaphicalYng__website_address', 'http://127.0.0.1/app-notes-e-uk/');	// Base url
 	define('MaphicalYng__sessions_path', "C:\\xampp\\ci_sessions\\");	// File based sessions saving path
 	define('MaphicalYng__sessions_time', 7200);				// Sessions lasting time
+    define('MaphicalYng__log_path', "C:\\xampp\\htdocs\\app-notes-e-uk\\view.log");// Log path
 //
 //
 //=================================================================================================================

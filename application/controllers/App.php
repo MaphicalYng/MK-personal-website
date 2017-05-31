@@ -36,6 +36,18 @@ class App extends CI_Controller
         /*
          * 需要表单验证库、表单和路径辅助函数。
          * */
+        // 对访问记录日志。
+        $handle = fopen(MaphicalYng__log_path, 'ab');
+        if ( ! $handle)
+        {
+            log_message('info', 'The log file is not able to open!');
+            goto log_fail;
+        }
+        date_default_timezone_set('Asia/Shanghai');
+        $write = 'View: '.date(DATE_COOKIE)."\r\n";
+        fwrite($handle, $write);
+        fclose($handle);
+        log_fail:
 
 
         /*
