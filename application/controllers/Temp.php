@@ -5,6 +5,7 @@
  * Date: 17/4/30
  * Time: 下午 9:53
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Temp extends CI_Controller
 {
 

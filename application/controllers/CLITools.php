@@ -5,6 +5,7 @@
  * Date: 17/5/6
  * Time: 下午 7:49
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 class CLITools extends CI_Controller
 {
     /**

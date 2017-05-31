@@ -5,6 +5,7 @@
  * Date: 17/5/5
  * Time: 下午 11:11
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Not_found extends CI_Controller
 {
 
