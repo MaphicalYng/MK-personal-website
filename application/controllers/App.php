@@ -20,7 +20,7 @@ class App extends CI_Controller
         parent::__construct();
         $this->load->model('app_model');
         $this->load->library(array('session', 'form_validation'));
-	$this->load->helper(array('url', 'form'));
+	    $this->load->helper(array('url', 'form'));
     }
 
 
@@ -37,17 +37,21 @@ class App extends CI_Controller
          * 需要表单验证库、表单和路径辅助函数。
          * */
         // 对访问记录日志。
-        $handle = fopen(MaphicalYng__log_path, 'ab');
-        if ( ! $handle)
+        if (MaphicalYng__log_feature)
         {
-            log_message('info', 'The log file is not able to open!');
-            goto log_fail;
+            $handle = fopen(MaphicalYng__log_path, 'ab');
+            if ( ! $handle)
+            {
+                log_message('info', 'The log file is not able to open!');
+                goto log_fail;
+            }
+            date_default_timezone_set('Asia/Shanghai');
+            $write = 'View: '.date(DATE_COOKIE)."\r\n";
+            fwrite($handle, $write);
+            fclose($handle);
+            log_fail:
         }
-        date_default_timezone_set('Asia/Shanghai');
-        $write = 'View: '.date(DATE_COOKIE)."\r\n";
-        fwrite($handle, $write);
-        fclose($handle);
-        log_fail:
+
 
 
         /*
@@ -120,14 +124,19 @@ class App extends CI_Controller
         /*
          * 为表单验证设置规则。
          * */
-        $this->form_validation->set_rules('id', '用户名', 'required', array(
+        $this->form_validation->set_rules('id', '用户名', 'required|trim', array(
             'required' => '请填写%s。'
         ));
         $this->form_validation->set_rules('password', '密码', 'required', array(
             'required' => '请填写%s。'
         ));
-        $this->form_validation->set_rules('email', '邮箱', 'required', array(
-            'required' => '请填写%s，当升级完成时，您可使用邮箱备忘录提醒功能。'
+        $this->form_validation->set_rules('c_password', '密码', 'required|matches[password]', array(
+            'matches' => '请输入相同的密码。',
+            'required' => '请填写%s'
+        ));
+        $this->form_validation->set_rules('email', '邮箱', 'required|valid_email', array(
+            'required' => '请填写%s，当升级完成时，您可使用邮箱备忘录提醒功能。',
+            'valid_email' => '请填写有效的邮件地址。'
         ));
 
 
@@ -158,13 +167,12 @@ class App extends CI_Controller
             $id_info['email'] = $this->input->post('email');
 
 
-            /*
-             * 创建数据表。
-             * */
-            $judge = $this->app_model->new_id($id_info);
-            if ($judge === 'already')
+            if ($this->app_model->check_email($id_info['email']))
             {
-                $data['title'] = '用户名已经存在';
+
+
+                // 邮件地址已经存在。
+                $data['title'] = '邮箱已经被使用';
                 $this->load->view('templates/header', $data);
                 $this->load->view('app/new-id');
                 $this->load->view('templates/footer');
@@ -174,13 +182,33 @@ class App extends CI_Controller
 
 
                 /*
-                * 显示成功页面。
+                * 创建数据表。
                 * */
-                $data['title'] = '创建成功';
-                $this->load->view('templates/header', $data);
-                $this->load->view('app/new-id-success');
-                $this->load->view('templates/footer');
+                $judge = $this->app_model->new_id($id_info);
+                if ($judge === 'already')
+                {
+                    $data['title'] = '用户名已经存在';
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('app/new-id');
+                    $this->load->view('templates/footer');
+                }
+                else
+                {
+
+
+                    /*
+                    * 显示成功页面并登录。
+                    * */
+                    $_SESSION['id'] = $id_info['id'];
+                    $data['title'] = '创建成功';
+                    $this->load->view('templates/header', $data);
+                    $this->load->view('app/new-id-success');
+                    $this->load->view('templates/footer');
+                }
             }
+
+
+
         }
     }
 
@@ -221,14 +249,15 @@ class App extends CI_Controller
         /*
          * 已经登陆，设置验证规则。
          * */
-        $this->form_validation->set_rules('id', '用户名', 'required', array(
+        $this->form_validation->set_rules('id', '用户名', 'required|trim', array(
             'required' => '请填写%s。'
         ));
         $this->form_validation->set_rules('old_password', '原密码', 'required', array(
             'required' => '请填写%s。'
         ));
-        $this->form_validation->set_rules('new_password', '新密码', 'required', array(
-            'required' => '请填写%s。'
+        $this->form_validation->set_rules('new_password', '新密码', 'required|matches[old_password]', array(
+            'required' => '请填写%s。',
+            'matches' => '请填写相同的%s。'
         ));
 
 
@@ -344,7 +373,7 @@ class App extends CI_Controller
         /*
          * 设置表单规则。
          * */
-        $this->form_validation->set_rules('id', '用户名', 'required', array(
+        $this->form_validation->set_rules('id', '用户名', 'required|trim', array(
             'required' => '请填写%s。'
         ));
         $this->form_validation->set_rules('password', '密码', 'required', array(
@@ -387,7 +416,7 @@ class App extends CI_Controller
             /*
              * 判断用户的存在情况。
              * */
-            if (!$query['exist'])
+            if ( ! $query['exist'])
             {
 
 
@@ -395,9 +424,8 @@ class App extends CI_Controller
                  * 用户不存在。
                  * */
                 $data['title'] = '用户不存在';
-                $data['error_info'] = '点击下面的链接注册或重新登录。';
                 $this->load->view('templates/header', $data);
-                $this->load->view('app/error', $data);
+                $this->load->view('app/log-in');
                 $this->load->view('templates/footer');
             }
             else

@@ -56,6 +56,25 @@ class App_model extends CI_Model
 
 
     /*
+     * 检查邮箱是否存在。
+     * */
+    public function check_email($email)
+    {
+        $query = $this->db->query('SELECT * FROM user WHERE user.email="'.$email.'"');
+        if ($query->num_rows() > 0)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
+
+
+
+
+    /*
      * 创建用户，为新用户创建一个条目。
      * */
     public function new_id($id_info)

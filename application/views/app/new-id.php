@@ -11,13 +11,16 @@
 <?php echo form_open('app/new_id');?>
 
     <h5>用户名</h5>
-    <input type="text" name="id" value="">
+    <input type="text" name="id" value="<?php echo set_value('id');?>">
 
     <h5>密码</h5>
-    <input type="text" name="password" value="">
+    <input type="text" name="password" value="<?php echo set_value('password');?>">
+
+    <h5>确认密码</h5>
+    <input type="text" name="c_password" value="<?php echo set_value('c_password');?>">
 
     <h5>邮箱</h5>
-    <input type="text" name="email" value="">
+    <input type="text" name="email" value="<?php echo set_value('email');?>">
 
     <br/><br/>
 

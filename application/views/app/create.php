@@ -11,7 +11,7 @@
 <?php echo form_open('app/create');?>
 
     <h5>标题：</h5>
-    <input type="text" name="item" value="">
+    <input type="text" name="item" value="<?php echo set_value('item');?>">
 
     <h5>内容：</h5>
     <textarea name="content" ></textarea>

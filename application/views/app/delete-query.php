@@ -11,7 +11,7 @@
 <?php echo form_open('app/delete');?>
 
     <h5>需要删除的条目标题</h5>
-    <input type="text" name="item" value="">
+    <input type="text" name="item" value="<?php echo set_value('item');?>">
 
     <br/><br/>
 

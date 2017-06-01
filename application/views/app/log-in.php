@@ -11,10 +11,10 @@
 <?php echo form_open('app/log_in');?>
 
     <h5>用户名</h5>
-    <input type="text" name="id" value="">
+    <input type="text" name="id" value="<?php echo set_value('id');?>">
 
     <h5>密码</h5>
-    <input type="text" name="password" value="">
+    <input type="text" name="password" value="<?php echo set_value('password');?>">
 
     <br/><br/>
 

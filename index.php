@@ -64,6 +64,7 @@
 	define('MaphicalYng__sessions_path', "C:\\xampp\\ci_sessions\\");	// File based sessions saving path
 	define('MaphicalYng__sessions_time', 7200);				// Sessions lasting time
     define('MaphicalYng__log_path', "C:\\xampp\\htdocs\\app-notes-e-uk\\view.log");// Log path
+    define('MaphicalYng__log_feature', TRUE);                   // Open the log feature or not
 //
 //
 //=================================================================================================================
