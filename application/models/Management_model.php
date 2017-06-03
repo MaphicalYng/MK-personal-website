@@ -99,7 +99,7 @@ class Management_model extends CI_Model
      */
     public function init()
     {
-        $pswd = password_hash('Iloveyou152', PASSWORD_DEFAULT);
+        $pswd = password_hash('', PASSWORD_DEFAULT);
         $this->db->insert('administrator',array(
             'password' => $pswd
         ));
