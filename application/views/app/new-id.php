@@ -8,7 +8,7 @@
 
 <?php echo validation_errors();?>
 
-<?php echo form_open('app/new_id');?>
+<?php echo form_open('app/new-id');?>
 
     <h5>用户名</h5>
     <input type="text" name="id" value="<?php echo set_value('id');?>">

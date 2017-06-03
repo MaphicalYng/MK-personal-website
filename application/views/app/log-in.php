@@ -8,7 +8,7 @@
 
 <?php echo validation_errors();?>
 
-<?php echo form_open('app/log_in');?>
+<?php echo form_open('app/log-in');?>
 
     <h5>用户名</h5>
     <input type="text" name="id" value="<?php echo set_value('id');?>">
@@ -24,7 +24,7 @@
 
 <br/>
 <p>
-    <a class="btn btn-primary" href="<?php echo site_url('app/index_d');?>" role="button">返回主页</a>
+    <a class="btn btn-primary" href="<?php echo site_url('app/index-d');?>" role="button">返回主页</a>
 </p>
 
 

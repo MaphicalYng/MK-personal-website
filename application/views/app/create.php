@@ -14,7 +14,7 @@
     <input type="text" name="item" value="<?php echo set_value('item');?>">
 
     <h5>内容：</h5>
-    <textarea name="content" ></textarea>
+    <textarea name="content" cols="60" rows="6"></textarea>
 
     <br/><br/>
 

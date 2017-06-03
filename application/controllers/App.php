@@ -34,6 +34,16 @@ class App extends CI_Controller
 
 
         /*
+         * 若已经登陆则转到操作页面。
+         * */
+        if (isset($_SESSION['id']))
+        {
+            $this->log_in();
+            return;
+        }
+
+
+        /*
          * 需要表单验证库、表单和路径辅助函数。
          * */
         // 对访问记录日志。
@@ -46,21 +56,10 @@ class App extends CI_Controller
                 goto log_fail;
             }
             date_default_timezone_set('Asia/Shanghai');
-            $write = 'View: '.date(DATE_COOKIE)."\r\n";
+            $write = 'View: '.date(DATE_COOKIE).' '.$_SERVER['REMOTE_ADDR']."\r\n";
             fwrite($handle, $write);
             fclose($handle);
             log_fail:
-        }
-
-
-
-        /*
-         * 若已经登陆则转到操作页面。
-         * */
-        if (isset($_SESSION['id']))
-        {
-            $this->log_in();
-            return;
         }
 
 

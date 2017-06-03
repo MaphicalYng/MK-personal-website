@@ -8,12 +8,20 @@
 CREATE DATABASE newapp;
 USE newapp;
 
+-- Create the table for administrator.
+
+CREATE TABLE administrator (
+  password VARCHAR(255)
+);
+-- You can use management_model/init method to initialize password.
+
 -- The structure of table user.
 
 CREATE TABLE user (
 	user VARCHAR(255),
 	password VARCHAR(255),
-	email VARCHAR(255)
+	email VARCHAR(255),
+	create_time DATETIME NOT NULL DEFAULT NOW()
 );
 
 -- The structure of table content.
