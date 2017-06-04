@@ -6,14 +6,14 @@
  * Time: 下午 5:12
  */?>
 
-<?php echo validation_errors();?>
-
 <?php echo form_open('app/create');?>
 
     <h5>标题：</h5>
+    <?php echo form_error('item');?>
     <input type="text" name="item" value="<?php echo set_value('item');?>">
 
     <h5>内容：</h5>
+    <?php echo form_error('content');?>
     <textarea name="content" cols="60" rows="6"></textarea>
 
     <br/><br/>

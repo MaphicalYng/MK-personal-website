@@ -21,6 +21,7 @@ class App extends CI_Controller
         $this->load->model('app_model');
         $this->load->library(array('session', 'form_validation'));
 	    $this->load->helper(array('url', 'form'));
+        $this->form_validation->set_error_delimiters('<h5 style="color: red">', '</h5>');
     }
 
 

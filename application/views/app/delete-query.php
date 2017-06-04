@@ -6,11 +6,10 @@
  * Time: 下午 10:40
  */?>
 
-<?php echo validation_errors();?>
-
 <?php echo form_open('app/delete');?>
 
     <h5>需要删除的条目标题</h5>
+    <?php echo form_error('item');?>
     <input type="text" name="item" value="<?php echo set_value('item');?>">
 
     <br/><br/>

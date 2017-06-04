@@ -19,6 +19,7 @@ class Management extends CI_Controller
         $this->load->model('management_model');
         $this->load->helper(array('url', 'form'));
         $this->load->library(array('form_validation', 'session'));
+        $this->form_validation->set_error_delimiters('<h5 style="color: red">', '</h5>');
     }
 
     /**
@@ -124,7 +125,6 @@ class Management extends CI_Controller
         }
 
         // 设置验证规则。
-        $this->form_validation->set_error_delimiters('<h5 style="color: red">', '</h5>');
         switch ($type)
         {
             case 'query':

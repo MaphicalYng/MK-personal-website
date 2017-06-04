@@ -6,14 +6,14 @@
  * Time: 上午 10:37
  */?>
 
-<?php echo validation_errors();?>
-
 <?php echo form_open('app/log-in');?>
 
     <h5>用户名</h5>
+    <?php echo form_error('id');?>
     <input type="text" name="id" value="<?php echo set_value('id');?>">
 
     <h5>密码</h5>
+    <?php echo form_error('password');?>
     <input type="text" name="password" value="<?php echo set_value('password');?>">
 
     <br/><br/>
