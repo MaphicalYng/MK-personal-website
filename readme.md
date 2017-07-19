@@ -1,8 +1,20 @@
 # U&K (Users & Keep)
 
+## User System
+
+This is a simple user system. It has some classic functions, such as registration, login and password-change. This project is built for my study. It's improving all the time. Welcome to help me -.-
+
+## Note Function
+
+We can login the system to keep some text in it and extract the text when we want.
+
+## Framework
+
+This system uses CodeIgniter.
+
 ## 用户系统
 
-这有一个简单的用户系统，可以实现注册、登录和修改密码功能。这个项目是处于学习的目的，并在持续改进中，也欢迎大家参与 -。-
+这是一个简单的用户系统，可以实现注册、登录和修改密码功能。这个项目是处于学习的目的，并在持续改进中，也欢迎大家参与 -。-
 
 ## 备忘录功能
 
