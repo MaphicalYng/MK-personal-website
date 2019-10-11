@@ -2,7 +2,7 @@
 
 ## 用户系统
 
-这是一个简单的用户系统，可以实现注册、登录和修改密码功能。这个项目是处于学习的目的，并在持续改进中，也欢迎大家参与 -。-
+这是一个简单的用户系统，可以实现注册、登录和修改密码功能。这个项目是处于学习的目的。
 
 ## 备忘录功能
 
@@ -10,11 +10,11 @@
 
 ## 框架
 
-我使用了 CI 框架，并做了一些修改，目前处在初学阶段……
+我使用了 CI 框架，并做了一些修改。
 
 ## User System
 
-This is a simple user system. It has some classic functions, such as registration, login and password-change. This project is built for my study. It's improving all the time. Welcome to help me -.-
+This is a simple user system. It has some classic functions, such as registration, login and password-change. This project is built for my study.
 
 ## Note Function
 
